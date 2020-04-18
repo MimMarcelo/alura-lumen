@@ -16,9 +16,29 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Episodio extends Model{
     
-    protected $fillable = ['temporada', 'numero', 'assistido'];
+    protected $fillable = ['temporada', 'numero', 'assistido', 'serie_id'];
     
     public function serie() {
         return $this->belongsTo(Serie::class);
+    }
+    
+    public function getTemporadaAttribute($temporada): int
+    {
+        return $temporada;
+    }
+    
+    public function getNumeroAttribute($numero): int
+    {
+        return $numero;
+    }
+    
+    public function getAssistidoAttribute($assistido): bool
+    {
+        return $assistido;
+    }
+    
+    public function getSerieIdAttribute($serieId): int
+    {
+        return $serieId;
     }
 }

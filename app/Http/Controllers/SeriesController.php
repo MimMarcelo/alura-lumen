@@ -9,7 +9,6 @@
 namespace App\Http\Controllers;
 
 use App\Serie;
-use Illuminate\Http\Request;
 /**
  * Description of SeriesController
  *
@@ -17,48 +16,7 @@ use Illuminate\Http\Request;
  */
 class SeriesController extends Controller 
 {
-    public function index()
-    {   
-        return Serie::query()->orderBy('nome')->get();
-    }
-    
-    public function store(Request $request) {
-        return response()
-                ->json(
-//                        Serie::create(["nome" => $request->nome]), 
-                        Serie::create($request->all()), 
-                        201
-                        );
-    }
-    
-    public function show(int $id) {
-        $serie = Serie::find($id);
-        if(is_null($serie)){
-            return response()->json("", 204);
-        }
-        
-        return response()->json($serie);
-    }
-    
-    public function update(int $id, Request $request) {
-        $serie = Serie::find($id);
-        if(is_null($serie)){
-            return response()->json("", 204);
-        }
-        
-        $serie->fill($request->all());
-        $serie->save();
-        
-        return response()->json($serie);
-    }
-    
-    public function destroy(int $id) {
-        $serie = Serie::find($id);
-        if(is_null($serie)){
-            return response()->json("", 204);
-        }
-        
-        $serie->delete();
-        return response()->json($serie);
+    public function __construct() {
+        parent::__construct(Serie::class);
     }
 }
