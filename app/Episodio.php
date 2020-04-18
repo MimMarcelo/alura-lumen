@@ -43,7 +43,7 @@ class Episodio extends Model{
         return $serieId;
     }
     
-    public function getLinksAttribute($links): array
+    public function getLinksAttribute(): array
     {
         return [
             "self" => "/api/episodios/{$this->id}",
