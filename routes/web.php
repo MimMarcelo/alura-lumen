@@ -28,13 +28,15 @@ $router->group(['prefix' => 'api'], function() use ($router) {
         $router->put('{id}', 'SeriesController@update');
 
         $router->delete('{id}', 'SeriesController@destroy');
+        
+        $router->get('{serieId}/episodios', 'EpisodiosController@episodiosPorSerie');
     });
     
     $router->group(['prefix' => 'episodios'], function() use ($router) {
 
         $router->post('', 'EpisodiosController@store');
 
-        $router->get('', 'EpisodiosController@index');
+//        $router->get('', 'EpisodiosController@index');
         $router->get('{id}', 'EpisodiosController@show');
 
         $router->put('{id}', 'EpisodiosController@update');

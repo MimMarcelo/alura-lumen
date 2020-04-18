@@ -10,4 +10,10 @@ class EpisodiosController extends Controller
     {
         parent::__construct(Episodio::class);
     }
+        
+    public function episodiosPorSerie(int $serieId)
+    {
+        $episodios = Episodio::query()->where("serie_id", $serieId)->get();
+        return response()->json($episodios);
+    }
 }

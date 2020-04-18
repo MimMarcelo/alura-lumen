@@ -17,7 +17,8 @@ use Illuminate\Database\Eloquent\Model;
 class Episodio extends Model{
     
     protected $fillable = ['temporada', 'numero', 'assistido', 'serie_id'];
-    
+    protected $appends = ['links'];
+//    protected $perPage = 0;
     public function serie() {
         return $this->belongsTo(Serie::class);
     }
@@ -40,5 +41,13 @@ class Episodio extends Model{
     public function getSerieIdAttribute($serieId): int
     {
         return $serieId;
+    }
+    
+    public function getLinksAttribute($links): array
+    {
+        return [
+            "self" => "/api/episodios/{$this->id}",
+            "serie" => "/api/series/{$this->serie_id}",
+        ];
     }
 }

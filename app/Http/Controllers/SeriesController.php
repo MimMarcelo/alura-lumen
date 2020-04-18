@@ -18,5 +18,5 @@ class SeriesController extends Controller
 {
     public function __construct() {
         parent::__construct(Serie::class);
-    }
+    }    
 }

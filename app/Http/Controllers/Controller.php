@@ -13,9 +13,10 @@ abstract class Controller extends BaseController
         $this->classe = $classe;
     }
     
-    public function index()
+    public function index(Request $request)
     {   
-        return $this->classe::query()->orderBy('nome')->get();
+//        return $this->classe::query()->orderBy('nome')->get();
+        return $this->classe::paginate($request->page);
     }
     
     public function store(Request $request) {
